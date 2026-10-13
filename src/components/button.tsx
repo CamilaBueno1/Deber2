@@ -13,7 +13,7 @@ export default function Button({ label, theme, onPress }: Props) {
       <View
         style={[
           styles.buttonContainer,
-          { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 },
+          { borderWidth: 4, borderColor: '#ff3d3d88', borderRadius: 18 },
         ]}>
         <Pressable style={[styles.button, { backgroundColor: '#fff' }]} onPress={onPress}>
           <FontAwesome name="picture-o" size={18} color="#25292e" style={styles.buttonIcon} />

@@ -14,7 +14,7 @@ import EmojiPicker from '@/components/emoji-picker';
 import EmojiList from '@/components/emoji-list';
 import EmojiSticker from '@/components/emoji-sticker';
 
-const PlaceholderImage = require('@/assets/images/background-image.png');
+const PlaceholderImage = require('@/assets/images/imagen_epn.jpeg');
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
@@ -122,7 +122,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
+    backgroundColor: '#0A2B5C',
     alignItems: 'center',
   },
   imageContainer: {
