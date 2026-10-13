@@ -14,7 +14,7 @@ import EmojiPicker from '@/components/emoji-picker';
 import EmojiList from '@/components/emoji-list';
 import EmojiSticker from '@/components/emoji-sticker';
 
-const PlaceholderImage = require('@/assets/images/imagen_epn.jpeg');
+const PlaceholderImage = require('@/assets/images/ESFOT.jpg');
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    flex: 1,
+    flex: 1
   },
   footerContainer: {
     flex: 1 / 3,
