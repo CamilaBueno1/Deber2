@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Palette, Spacing } from '@/constants/design';
 
 type Props = {
   icon: keyof typeof MaterialIcons.glyphMap;
@@ -9,8 +10,11 @@ type Props = {
 
 export default function IconButton({ icon, label, onPress }: Props) {
   return (
-    <Pressable style={styles.iconButton} onPress={onPress}>
-      <MaterialIcons name={icon} size={24} color="#fff" />
+    <Pressable
+      accessibilityRole="button"
+      style={({ pressed }) => [styles.iconButton, pressed && styles.pressed]}
+      onPress={onPress}>
+      <MaterialIcons name={icon} size={24} color={Palette.primary} />
       <Text style={styles.iconButtonLabel}>{label}</Text>
     </Pressable>
   );
@@ -18,11 +22,21 @@ export default function IconButton({ icon, label, onPress }: Props) {
 
 const styles = StyleSheet.create({
   iconButton: {
+    minWidth: 64,
+    minHeight: 64,
     justifyContent: 'center',
     alignItems: 'center',
+    gap: Spacing.xxs,
+    paddingHorizontal: Spacing.xxs,
   },
   iconButtonLabel: {
-    color: '#fff',
-    marginTop: 12,
+    color: Palette.textSecondary,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  pressed: {
+    opacity: 0.7,
   },
 });

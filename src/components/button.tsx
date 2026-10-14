@@ -1,34 +1,37 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Palette, Radius } from '@/constants/design';
 
 type Props = {
   label: string;
   theme?: 'primary';
-  onPress?: () => void; 
+  onPress?: () => void;
 };
 
-export default function Button({ label, theme, onPress }: Props) { 
-  if (theme === 'primary') {
-    return (
-      <View
-        style={[
-          styles.buttonContainer,
-          { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 },
-        ]}>
-        <Pressable
-          style={[styles.button, { backgroundColor: '#fff' }]}
-          onPress={onPress}> {/* <- 3. Usado aquí */}
-          <FontAwesome name="picture-o" size={18} color="#25292e" style={styles.buttonIcon} />
-          <Text style={[styles.buttonLabel, { color: '#25292e' }]}>{label}</Text>
-        </Pressable>
-      </View>
-    );
-  }
+export default function Button({ label, theme, onPress }: Props) {
+  const isPrimary = theme === 'primary';
 
   return (
-    <View style={styles.buttonContainer}>
-      <Pressable style={styles.button} onPress={onPress}> {/* <- 4. Usado aquí */}
-        <Text style={styles.buttonLabel}>{label}</Text>
+    <View style={[styles.buttonContainer, isPrimary && styles.primaryContainer]}>
+      <Pressable
+        accessibilityRole="button"
+        onPress={onPress}
+        style={({ pressed }) => [
+          styles.button,
+          isPrimary ? styles.primaryButton : styles.secondaryButton,
+          pressed && styles.pressed,
+        ]}>
+        {isPrimary && (
+          <FontAwesome
+            name="picture-o"
+            size={19}
+            color={Palette.surface}
+            style={styles.buttonIcon}
+          />
+        )}
+        <Text style={[styles.buttonLabel, isPrimary ? styles.primaryLabel : styles.secondaryLabel]}>
+          {label}
+        </Text>
       </Pressable>
     </View>
   );
@@ -36,26 +39,50 @@ export default function Button({ label, theme, onPress }: Props) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 320,
-    height: 68,
-    marginHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 3,
+    width: '100%',
+    height: 52,
+    borderRadius: Radius.control,
+  },
+  primaryContainer: {
+    shadowColor: Palette.primaryDark,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2,
   },
   button: {
-    borderRadius: 10,
-    width: '100%',
-    height: '100%',
+    flex: 1,
+    borderRadius: Radius.control,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    paddingHorizontal: 20,
+    gap: 8,
+  },
+  primaryButton: {
+    backgroundColor: Palette.primary,
+  },
+  secondaryButton: {
+    backgroundColor: Palette.surface,
+    borderColor: Palette.border,
+    borderWidth: StyleSheet.hairlineWidth + 0.5,
+  },
+  pressed: {
+    opacity: 0.82,
   },
   buttonIcon: {
-    paddingRight: 8,
+    marginRight: 0,
   },
   buttonLabel: {
-    color: '#fff',
     fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  primaryLabel: {
+    color: Palette.surface,
+  },
+  secondaryLabel: {
+    color: Palette.primary,
   },
 });

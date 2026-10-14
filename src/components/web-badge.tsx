@@ -1,26 +1,23 @@
 import { version } from 'expo/package.json';
 import { Image } from 'expo-image';
-import { useColorScheme, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 
 import { Spacing } from '@/constants/theme';
+import { Palette, Radius } from '@/constants/design';
 
 export function WebBadge() {
-  const scheme = useColorScheme();
-
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="code" themeColor="textSecondary" style={styles.versionText}>
-        v{version}
+        StickerSmash · Expo SDK {version}
       </ThemedText>
       <Image
-        source={
-          scheme === 'dark'
-            ? require('@/assets/images/expo-badge-white.png')
-            : require('@/assets/images/expo-badge.png')
-        }
+        source={require('@/assets/images/epn-logo-1024.png')}
+        contentFit="contain"
+        accessibilityLabel="Escudo de la Escuela Politécnica Nacional"
         style={styles.badgeImage}
       />
     </ThemedView>
@@ -29,15 +26,17 @@ export function WebBadge() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: Spacing.five,
+    padding: Spacing.three,
     alignItems: 'center',
-    gap: Spacing.two,
+    gap: Spacing.three,
+    backgroundColor: Palette.surface,
+    borderRadius: Radius.card,
   },
   versionText: {
     textAlign: 'center',
   },
   badgeImage: {
-    width: 123,
-    aspectRatio: 123 / 24,
+    width: 64,
+    height: 64,
   },
 });

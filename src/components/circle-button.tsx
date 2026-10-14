@@ -1,5 +1,6 @@
 import { View, Pressable, StyleSheet } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Palette, Radius } from '@/constants/design';
 
 type Props = {
   onPress: () => void;
@@ -8,8 +9,12 @@ type Props = {
 export default function CircleButton({ onPress }: Props) {
   return (
     <View style={styles.circleButtonContainer}>
-      <Pressable style={styles.circleButton} onPress={onPress}>
-        <MaterialIcons name="add" size={38} color="#25292e" />
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Agregar sticker"
+        style={({ pressed }) => [styles.circleButton, pressed && styles.pressed]}
+        onPress={onPress}>
+        <MaterialIcons name="add" size={30} color={Palette.surface} />
       </Pressable>
     </View>
   );
@@ -17,19 +22,22 @@ export default function CircleButton({ onPress }: Props) {
 
 const styles = StyleSheet.create({
   circleButtonContainer: {
-    width: 84,
-    height: 84,
-    marginHorizontal: 60,
-    borderWidth: 4,
-    borderColor: '#ffd33d',
-    borderRadius: 42,
-    padding: 3,
+    width: 64,
+    height: 64,
+    flexShrink: 0,
+    borderWidth: 3,
+    borderColor: Palette.accent,
+    borderRadius: Radius.pill,
+    padding: 2,
   },
   circleButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 42,
-    backgroundColor: '#fff',
+    borderRadius: Radius.pill,
+    backgroundColor: Palette.primary,
+  },
+  pressed: {
+    opacity: 0.82,
   },
 });

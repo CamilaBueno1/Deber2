@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   button: {
-    width: Spacing.four,
-    height: Spacing.four,
-    borderRadius: 12,
+    width: 48,
+    height: 48,
+    borderRadius: Spacing.two,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -1,6 +1,6 @@
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, StyleSheet } from 'react-native';
 
 type Props = {
   imageSize: number;
@@ -34,22 +34,16 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
     translateY.value += event.changeY;
   });
 
-  const containerStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: translateX.value,
-        },
-        {
-          translateY: translateY.value,
-        },
-      ],
-    };
-  });
+  const containerStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: translateX.value - scaleImage.value / 2 },
+      { translateY: translateY.value - scaleImage.value / 2 },
+    ],
+  }));
 
   return (
     <GestureDetector gesture={drag}>
-      <Animated.View style={[containerStyle, { top: -350 }]}>
+      <Animated.View style={[styles.stickerContainer, containerStyle]}>
         <GestureDetector gesture={doubleTap}>
           <Animated.Image
             source={stickerSource}
@@ -61,3 +55,11 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
     </GestureDetector>
   );
 }
+
+const styles = StyleSheet.create({
+  stickerContainer: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+  },
+});
