@@ -102,22 +102,31 @@ export default function Index() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
+      <View pointerEvents="none" style={styles.blueBand} />
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
         bounces={false}>
-        <View
-          ref={imageRef}
-          collapsable={false}
-          style={[styles.imageStage, { width: imageFrameWidth }]}>
-          <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
-          {pickedEmoji && <EmojiSticker imageSize={48} stickerSource={pickedEmoji} />}
+        <View style={[styles.imageShadow, { width: imageFrameWidth }]}>
+          <View
+            ref={imageRef}
+            collapsable={false}
+            style={styles.imageStage}>
+            <ImageViewer
+              imgSource={PlaceholderImage}
+              selectedImage={selectedImage}
+              frameWidth={imageFrameWidth - 8}
+            />
+            {pickedEmoji && <EmojiSticker imageSize={48} stickerSource={pickedEmoji} />}
+          </View>
         </View>
         {showAppOptions ? (
-          <View style={styles.optionsRow}>
-            <IconButton icon="refresh" label="Reiniciar" onPress={onReset} />
-            <CircleButton onPress={onAddSticker} />
-            <IconButton icon="save-alt" label="Guardar" onPress={onSaveImageAsync} />
+          <View style={styles.optionsCard}>
+            <View style={styles.optionsRow}>
+              <IconButton icon="refresh" label="Reiniciar" onPress={onReset} />
+              <CircleButton onPress={onAddSticker} />
+              <IconButton icon="save-alt" label="Guardar" onPress={onSaveImageAsync} />
+            </View>
           </View>
         ) : (
           <View style={styles.footerContainer}>
@@ -138,35 +147,67 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Palette.background,
   },
+  blueBand: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+    backgroundColor: Palette.primary,
+  },
   content: {
     flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: Spacing.md,
-    paddingTop: Spacing.md,
+    paddingTop: Spacing.lg,
     paddingBottom: Spacing.lg,
-    gap: Spacing.lg,
+    gap: Spacing.md,
+  },
+  imageShadow: {
+    aspectRatio: 3 / 4,
+    borderRadius: 28,
+    shadowColor: Palette.primaryDark,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.16,
+    shadowRadius: 12,
+    elevation: 5,
   },
   imageStage: {
-    aspectRatio: 3 / 4,
-    borderRadius: Radius.card,
-    backgroundColor: Palette.surface,
+    flex: 1,
+    borderRadius: 28,
+    borderWidth: 4,
+    borderColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
+    backgroundColor: Palette.surface,
   },
   footerContainer: {
     width: '100%',
     maxWidth: 360,
     alignItems: 'center',
-    gap: Spacing.sm,
+    gap: 10,
+  },
+  optionsCard: {
+    width: '100%',
+    maxWidth: 360,
+    marginTop: Spacing.sm,
+    paddingHorizontal: Spacing.md,
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.sm,
+    borderRadius: Radius.actionCard,
+    backgroundColor: Palette.surface,
+    shadowColor: Palette.primaryDark,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 3,
   },
   optionsRow: {
     width: '100%',
-    maxWidth: 300,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: Spacing.md,
+    gap: Spacing.sm,
   },
 });

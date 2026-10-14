@@ -22,12 +22,13 @@ export default function IconButton({ icon, label, onPress }: Props) {
 
 const styles = StyleSheet.create({
   iconButton: {
-    minWidth: 64,
+    minWidth: 72,
     minHeight: 64,
     justifyContent: 'center',
     alignItems: 'center',
     gap: Spacing.xxs,
     paddingHorizontal: Spacing.xxs,
+    transform: [{ translateY: -12 }],
   },
   iconButtonLabel: {
     color: Palette.textSecondary,

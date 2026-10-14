@@ -1,16 +1,17 @@
 import { ImageSourcePropType, StyleSheet, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
-import { getImageFrameWidth, Palette, Radius } from '@/constants/design';
+import { getImageFrameWidth, Radius } from '@/constants/design';
 
 type Props = {
   imgSource: ImageSourcePropType;
   selectedImage?: string;
+  frameWidth?: number;
 };
 
-export default function ImageViewer({ imgSource, selectedImage }: Props) {
+export default function ImageViewer({ imgSource, selectedImage, frameWidth }: Props) {
   const { width, height } = useWindowDimensions();
   const imageSource = selectedImage ? { uri: selectedImage } : imgSource;
-  const imageWidth = getImageFrameWidth(width, height);
+  const imageWidth = frameWidth ?? getImageFrameWidth(width, height);
 
   return (
     <Image
@@ -23,7 +24,6 @@ export default function ImageViewer({ imgSource, selectedImage }: Props) {
 
 const styles = StyleSheet.create({
   image: {
-    borderRadius: Radius.card,
-    backgroundColor: Palette.primaryLight,
+    borderRadius: Radius.image,
   },
 });

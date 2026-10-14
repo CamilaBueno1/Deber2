@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: '100%',
     height: 52,
-    borderRadius: Radius.control,
+    borderRadius: Radius.card,
   },
   primaryContainer: {
     shadowColor: Palette.primaryDark,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    borderRadius: Radius.control,
+    borderRadius: Radius.card,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: Palette.surface,
-    borderColor: Palette.border,
-    borderWidth: StyleSheet.hairlineWidth + 0.5,
+    borderColor: Palette.primary,
+    borderWidth: 1,
   },
   pressed: {
     opacity: 0.82,

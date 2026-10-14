@@ -37,47 +37,58 @@ export default function AboutScreen() {
       style={styles.screen}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}>
-      <View style={styles.brand}>
-        <Image
-          source={require('@/assets/images/epn-logo-1024.png')}
-          contentFit="contain"
-          accessibilityLabel="Escudo de la Escuela Politécnica Nacional"
-          style={styles.logo}
-        />
-        <Text style={styles.title}>StickerSmash</Text>
-        <Text style={styles.subtitle}>Crea algo propio con cada imagen</Text>
-      </View>
-
-      <Text style={styles.description}>
-        Elige una foto, añade stickers y prepara una composición lista para guardar. Una experiencia
-        sencilla de edición con la identidad visual de la Escuela Politécnica Nacional.
-      </Text>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Qué puedes hacer</Text>
-        <View style={styles.featureList}>
-          {features.map((feature) => (
-            <View key={feature.title} style={styles.featureCard}>
-              <View style={styles.featureIcon}>
-                <MaterialIcons name={feature.icon} size={22} color={Palette.primary} />
-              </View>
-              <View style={styles.featureCopy}>
-                <Text style={styles.featureTitle}>{feature.title}</Text>
-                <Text style={styles.featureDescription}>{feature.description}</Text>
-              </View>
-            </View>
-          ))}
+      <View style={styles.banner}>
+        <View style={styles.logoBadge}>
+          <Image
+            source={require('@/assets/images/epn-logo-1024.png')}
+            contentFit="contain"
+            accessibilityLabel="Escudo de la Escuela Politécnica Nacional"
+            style={styles.logo}
+          />
         </View>
+        <Text style={styles.title}>StickerSmash</Text>
+        <Text style={styles.subtitle}>Escuela Politécnica Nacional</Text>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Tecnologías</Text>
-        <View style={styles.technologyList}>
-          {technologies.map((technology) => (
-            <View key={technology} style={styles.technologyChip}>
-              <Text style={styles.technologyText}>{technology}</Text>
-            </View>
-          ))}
+      <View style={styles.cards}>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Identidad visual</Text>
+          <Text style={styles.description}>
+            Una experiencia sencilla de edición con la identidad visual de la Escuela Politécnica
+            Nacional.
+          </Text>
+          <View style={styles.featureList}>
+            {features.map((feature) => (
+              <View key={feature.title} style={styles.featureRow}>
+                <View style={styles.featureIcon}>
+                  <MaterialIcons name={feature.icon} size={20} color={Palette.primary} />
+                </View>
+                <View style={styles.featureCopy}>
+                  <Text style={styles.featureTitle}>{feature.title}</Text>
+                  <Text style={styles.featureDescription}>{feature.description}</Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Tecnologías usadas</Text>
+          <View style={styles.technologyList}>
+            {technologies.map((technology) => (
+              <View key={technology} style={styles.technologyChip}>
+                <Text style={styles.technologyText}>{technology}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        <View style={[styles.card, styles.versionCard]}>
+          <View style={styles.versionCopy}>
+            <Text style={styles.cardTitle}>Versión</Text>
+            <Text style={styles.versionDescription}>Versión actual de la aplicación</Text>
+          </View>
+          <Text style={styles.versionNumber}>1.0.0</Text>
         </View>
       </View>
     </ScrollView>
@@ -90,70 +101,98 @@ const styles = StyleSheet.create({
     backgroundColor: Palette.background,
   },
   content: {
-    width: '100%',
-    maxWidth: 600,
-    alignSelf: 'center',
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.lg,
-    paddingBottom: Spacing.xxl,
-    gap: Spacing.xl,
-  },
-  brand: {
     alignItems: 'center',
+    paddingBottom: Spacing.xxl,
+  },
+  banner: {
+    width: '100%',
+    minHeight: 280,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.xl,
+    paddingBottom: Spacing.xl,
+    gap: Spacing.xs,
+    backgroundColor: Palette.primary,
+    borderBottomWidth: 3,
+    borderBottomColor: Palette.accent,
+  },
+  logoBadge: {
+    width: 112,
+    height: 112,
+    marginBottom: Spacing.sm,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 28,
+    backgroundColor: Palette.surface,
   },
   logo: {
-    width: 120,
-    height: 120,
-    marginBottom: Spacing.md,
+    width: 100,
+    height: 100,
   },
   title: {
-    color: Palette.text,
+    color: Palette.surface,
     fontSize: 28,
     lineHeight: 36,
     fontWeight: '700',
     textAlign: 'center',
   },
   subtitle: {
-    color: Palette.textSecondary,
+    color: Palette.surface,
     fontSize: 16,
     lineHeight: 24,
+    fontWeight: '500',
     textAlign: 'center',
-    marginTop: Spacing.xs,
+  },
+  cards: {
+    width: '100%',
+    maxWidth: 600,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    gap: Spacing.md,
+  },
+  card: {
+    padding: Spacing.md,
+    gap: Spacing.md,
+    borderRadius: Radius.actionCard,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Palette.border,
+    borderLeftWidth: 4,
+    borderLeftColor: Palette.accent,
+    backgroundColor: Palette.surface,
+    shadowColor: Palette.primaryDark,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  cardTitle: {
+    color: Palette.text,
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '700',
   },
   description: {
     color: Palette.textSecondary,
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  section: {
-    gap: Spacing.md,
-  },
-  sectionTitle: {
-    color: Palette.text,
-    fontSize: 19,
-    lineHeight: 26,
-    fontWeight: '600',
+    fontSize: 15,
+    lineHeight: 22,
   },
   featureList: {
-    gap: Spacing.sm,
+    gap: Spacing.md,
   },
-  featureCard: {
+  featureRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.md,
-    padding: Spacing.md,
-    backgroundColor: Palette.surface,
-    borderRadius: Radius.card,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Palette.border,
+    gap: Spacing.sm,
   },
   featureIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: Radius.control,
-    backgroundColor: Palette.primaryLight,
+    width: 40,
+    height: 40,
+    flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: Radius.control,
+    backgroundColor: Palette.primaryLight,
   },
   featureCopy: {
     flex: 1,
@@ -161,8 +200,8 @@ const styles = StyleSheet.create({
   },
   featureTitle: {
     color: Palette.text,
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 15,
+    lineHeight: 20,
     fontWeight: '600',
   },
   featureDescription: {
@@ -179,14 +218,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     borderRadius: Radius.pill,
-    backgroundColor: Palette.surface,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Palette.border,
+    backgroundColor: Palette.primaryLight,
   },
   technologyText: {
-    color: Palette.primary,
+    color: Palette.primaryDark,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '600',
+  },
+  versionCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  versionCopy: {
+    flex: 1,
+    gap: Spacing.xxs,
+  },
+  versionDescription: {
+    color: Palette.textSecondary,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  versionNumber: {
+    color: Palette.primary,
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '700',
   },
 });

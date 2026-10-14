@@ -1,7 +1,7 @@
 export const Palette = {
   primary: '#16243E',
   primaryDark: '#0D1729',
-  primaryLight: '#E9EDF3',
+  primaryLight: '#E8EFF7',
   accent: '#F3BC48',
   background: '#F4F7FA',
   surface: '#FFFFFF',
@@ -25,6 +25,8 @@ export const Spacing = {
 export const Radius = {
   control: 12,
   card: 16,
+  image: 24,
+  actionCard: 20,
   sheet: 24,
   pill: 999,
 } as const;

@@ -10,7 +10,7 @@ Rediseña la interfaz existente para que se sienta institucional, académica y a
 ## 1. Personalidad del diseño
 
 - Comunica rigor académico, tecnología y pertenencia a la Escuela Politécnica Nacional (EPN).
-- Usa el color institucional como acento dominante, superficies claras, composición ordenada y bastante espacio en blanco.
+- El azul institucional es el color dominante: debe definir encabezados y bloques principales de fondo. Equilíbralo con superficies claras y composición ordenada; no limites su presencia a acentos.
 - Mantén una jerarquía visual evidente: una acción primaria por pantalla, controles secundarios discretos y contenido agrupado.
 - Prefiere bordes limpios, radios consistentes y sombras casi imperceptibles. Evita gradientes decorativos, contornos gruesos, elementos flotantes sin propósito y colores saturados ajenos a la identidad.
 - Mantén la misma identidad en iOS, Android y web; considera áreas seguras, tamaños adaptables y controles táctiles cómodos.
@@ -21,10 +21,10 @@ El repositorio contiene imágenes de ejemplo de Expo, no un escudo EPN verificab
 
 | Rol | Color | Código | Uso |
 |---|---|---|---|
-| Primario institucional | Tono dominante del logo EPN | **verificar** (muestrear HEX exacto del escudo oficial) | Botón principal, selección activa, iconos activos y llamadas de atención. |
-| Primario oscuro | Variante oscura del primario EPN | **verificar** (definir desde el HEX oficial y validar contraste) | Estados presionados, títulos sobre fondos claros y encabezados puntuales. |
-| Primario claro | Variante clara del primario EPN | **verificar** (definir desde el HEX oficial) | Fondos sutiles seleccionados, indicadores y superficies informativas; no usar para texto pequeño. |
-| Acento | Color secundario presente en el logo EPN | **verificar** (muestrear HEX exacto; no introducir un color nuevo) | Detalles pequeños e indicadores; máximo 5 % de la superficie visible. |
+| Primario institucional | Azul marino del escudo EPN | `#16243E` | Color dominante en encabezados, franja superior de Inicio, botones primarios e iconos activos. |
+| Primario oscuro | Azul más profundo del sistema | `#0D1729` | Sombras discretas y estados que requieren una variante más oscura. |
+| Primario claro | Azul grisáceo claro | `#E8EFF7` | Fondos informativos suaves y superficies seleccionadas; no usar para texto pequeño. |
+| Acento | Dorado del escudo EPN | `#F3BC48` | Línea fina de encabezado, indicador activo, borde de tarjetas y botón “+”. |
 | Fondo de pantalla | Gris azulado muy claro | `#F4F7FA` | Fondo general; deja que las tarjetas blancas y la imagen destaquen. |
 | Superficie | Blanco | `#FFFFFF` | Tarjetas, botones claros y modal. |
 | Texto principal | Azul grisáceo casi negro | `#172B3A` | Títulos, texto de lectura y etiquetas importantes. |
@@ -32,9 +32,9 @@ El repositorio contiene imágenes de ejemplo de Expo, no un escudo EPN verificab
 | Borde suave | Gris azulado claro | `#D9E1E8` | Separadores, contornos de tarjetas y botones secundarios. |
 | Error | Rojo oscuro | `#B42318` | Mensajes de error y estados inválidos; reservarlo exclusivamente para errores. |
 
-- Distribución orientativa por área visible: 70–80 % fondos y superficies claras, 15–20 % primario institucional, 5–10 % textos/bordes neutros; el acento no debe superar 5 %.
+- **Se anula la distribución anterior de 15–20 % de primario.** El azul institucional debe dominar visualmente mediante encabezados y bandas azules; conserva áreas claras para legibilidad y contraste. El dorado sigue siendo un acento pequeño, no un fondo dominante.
 - El texto normal debe alcanzar contraste WCAG AA de al menos 4.5:1; texto grande, al menos 3:1. Comprueba los HEX finales, especialmente texto sobre primario y primario claro.
-- Si un tono institucional no ofrece contraste suficiente, conserva el HEX del logo para decoración y usa una variante oscura verificada para texto. No aclares el texto hasta perder legibilidad.
+- El logo oficial proporcionado se conserva sin recolor ni deformación. Sobre el banner azul, colócalo centrado en una superficie blanca que garantice contraste.
 
 ## 3. Tipografía
 
@@ -66,9 +66,9 @@ Usa la fuente del sistema (`System` en iOS y el sans-serif predeterminado de And
 Aplica los valores en unidades lógicas de React Native (`dp`); adapta anchos al espacio disponible en vez de fijar un ancho que desborde.
 
 - **Encabezado y barra de pestañas**
-  - Encabezado: 56–64 px de alto útil, título de 20 px/600 y alineación vertical centrada; respeta el área segura superior.
-  - Barra de pestañas: 60–68 px de alto más el inset inferior del dispositivo; iconos de 22–24 px y etiquetas de 12 px.
-  - Usa fondo de superficie o primario oscuro solo si el texto/iconos conservan contraste AA. El estado activo usa primario institucional; inactivo, texto secundario.
+  - Encabezado azul institucional con título blanco en negrita y logo EPN de 32 px a su izquierda; agrega una línea dorada de 3 px en el borde inferior. Respeta el área segura superior.
+  - Barra de pestañas blanca, de 60–68 px más el inset inferior; iconos de 22–24 px y etiquetas de 12 px.
+  - El estado activo usa azul institucional y una barra dorada pequeña encima; el inactivo usa gris azulado.
   - Centra cada icono con su etiqueta; mantén mínimo 48 × 48 px de zona táctil. No agregues cabeceras que dupliquen el título de la pantalla.
 - **Button principal**
   - Alto 52–56 px; ancho `100 %` del contenedor hasta un máximo de 360 px.
@@ -90,7 +90,7 @@ Aplica los valores en unidades lógicas de React Native (`dp`); adapta anchos al
 - **ImageViewer**
   - Conserva proporción de retrato 3:4. En móvil, usa ancho `min(ancho disponible, 360 px)` con márgenes laterales de 20 px; limita la altura aproximada a 50–56 % del alto útil.
   - Redimensiona la imagen seleccionada sin deformarla (`contain` si debe verse completa; `cover` solo si el recorte es deliberado y coherente).
-  - Radio de 16 px. No pongas marcos ni sombras fuertes que compitan con la imagen.
+  - Radio de 24 px, borde blanco de 4 px y sombra suave; céntrala y dale presencia de tarjeta. No dejes un segundo fondo gris visible detrás de la foto.
 - **EmojiPicker**
   - Presenta una hoja inferior de 280–360 px de alto (máximo 45 % de la pantalla), ancho completo, superficie blanca y radios superiores de 22–24 px.
   - Usa un overlay oscuro translúcido detrás. Deja 16–20 px de margen interior y respeta el inset inferior.
@@ -106,22 +106,21 @@ Aplica los valores en unidades lógicas de React Native (`dp`); adapta anchos al
 
 ## 6. Pantalla Inicio
 
-1. Respeta el área segura y usa el fondo de pantalla definido. Mantén el flujo vertical centrado y adaptable.
+1. Respeta el área segura. Bajo el encabezado, usa una franja azul institucional de unos 120 px que se funda visualmente con él; el resto del fondo es gris azulado claro.
 2. Cuando no haya imagen seleccionada, muestra la imagen grande de ejemplo centrada, en proporción 3:4 y hasta 360 px de ancho. Si el espacio vertical es reducido, reduce la imagen antes de desplazar los botones fuera de pantalla.
-3. Mantén los botones de selección/uso de foto inmediatamente debajo de la imagen: separación de 12–16 px entre imagen y primer botón, y 10–12 px entre botones. No dejes un tercio de pantalla vacío como relleno.
-4. Cuando haya opciones, ubica “Reiniciar”, “+” y “Guardar” en una sola fila centrada debajo o cerca de la imagen, con separación de 16–24 px. El conjunto debe quedar equilibrado y no depender de `position: absolute` con una distancia fija del borde.
-5. Alinea verticalmente los tres controles; el botón circular puede ser mayor, pero su centro debe coincidir con el eje de la fila. Mantén etiquetas centradas debajo de sus iconos.
+3. Cuando no haya foto seleccionada, muestra inmediatamente debajo dos botones centrados y del mismo ancho: principal azul con icono y secundario blanco con borde azul. Ambos usan radio 16 px, mínimo 48 px de alto y separación de 10–12 px.
+4. Cuando haya opciones, pon “Reiniciar”, “+” y “Guardar” en una tarjeta blanca de radio 20 px y sombra suave. El botón “+” es mayor, dorado con icono azul, y sobresale un poco por encima de la tarjeta.
+5. Mantén los tres controles en una fila centrada y equilibrada, con etiquetas debajo de los iconos. No dependas de `position: absolute` con una distancia fija del borde ni dejes grandes huecos vacíos.
 6. Conserva las acciones de elegir imagen, agregar sticker, reiniciar y guardar; limita los cambios a estructura visual y estilos, sin alterar la lógica o permisos.
 
 ## 7. Pantalla Acerca de
 
 - Haz una pantalla desplazable (`ScrollView`) con padding horizontal de 20–24 px y espacios verticales regulares; debe seguir siendo utilizable en pantallas pequeñas y con texto ampliado.
 - Orden del contenido:
-  1. Logo/escudo oficial EPN centrado, contenido completo y sin deformar; ocupa 88–112 px de alto y un máximo aproximado de 180 px de ancho.
-  2. Título de 26–28 px/700 y subtítulo breve de 16 px, centrados; separa el logo del título por 16–20 px.
-  3. Descripción de 16 px con interlineado de 23–25 px, alineada a la izquierda en un bloque de lectura cómodo.
-  4. Tarjetas de información en superficie blanca, padding de 16 px, radio de 12–16 px y 12 px entre tarjetas; cada tarjeta lleva encabezado breve y contenido con jerarquía clara.
-  5. Lista de tecnologías en etiquetas o filas compactas con iconografía discreta; conserva nombres legibles y evita logos desproporcionados.
+  1. Banner azul institucional con el logo/escudo EPN grande y centrado sobre una superficie blanca; conserva el recurso completo y sin deformar.
+  2. En el banner, título blanco “StickerSmash” de 26–28 px/700 y subtítulo blanco “Escuela Politécnica Nacional” de 16 px, ambos centrados.
+  3. Debajo, tarjetas blancas de radio 20 px, sombra discreta y borde izquierdo dorado; deja 12–16 px entre tarjetas.
+  4. Incluye las tarjetas “Identidad visual”, “Tecnologías usadas” y “Versión”. Presenta el contenido legible, con descripción y lista de tecnologías compacta, sin inventar datos.
 - No inventes datos institucionales ni atribuciones. Usa solo contenido disponible en el proyecto o confirmado por el usuario.
 - Evita centrar verticalmente un único texto y dejar el resto vacío; distribuye la información a lo largo del scroll y comprueba que el contenido termina con padding inferior suficiente.
 
@@ -145,14 +144,14 @@ Aplica los valores en unidades lógicas de React Native (`dp`); adapta anchos al
 ## 10. Checklist final
 
 - [ ] El diseño se percibe institucional, académico, moderno y despejado; cada ajuste mejora estética, alineación o usabilidad.
-- [ ] Los HEX primario, primario oscuro, primario claro y acento se verificaron contra el escudo/logo oficial; no queda ningún valor institucional inventado.
+- [ ] El azul institucional domina la identidad visual; se anuló la distribución anterior de 15–20 % de color primario y el dorado se reserva para detalles.
 - [ ] El texto cumple contraste AA y los estados no dependen únicamente del color.
 - [ ] La tipografía usa fuente del sistema y mantiene tamaños, pesos e interlineados de esta guía.
 - [ ] Márgenes, espaciados, radios y sombras siguen escalas coherentes.
-- [ ] Encabezado y pestañas respetan safe areas y ofrecen zonas táctiles cómodas.
+- [ ] Encabezado azul con logo de 32 px, título blanco y línea dorada de 3 px; pestañas blancas con indicador dorado y selección azul.
 - [ ] Botones e iconos, incluido el “+”, quedan centrados, agrupados y alineados.
 - [ ] Imagen grande y controles de Inicio están cerca, sin huecos vacíos; Reiniciar, “+” y Guardar forman una fila centrada.
-- [ ] Acerca de muestra el logo centrado, título, descripción, tarjetas y tecnologías; hay scroll y no queda vacía.
+- [ ] Acerca de muestra banner azul con logo en superficie blanca, “StickerSmash”, “Escuela Politécnica Nacional” y tarjetas “Identidad visual”, “Tecnologías usadas” y “Versión”; hay scroll y no queda vacía.
 - [ ] Icono, adaptive icon, splash y favicon (si aplica) usan recursos coherentes y no deformados.
 - [ ] No cambió la lógica de la app ni se añadieron dependencias innecesarias.
 - [ ] Se revisó el resultado en tamaños compactos y amplios, y en iOS, Android y web.

@@ -14,7 +14,7 @@ export default function CircleButton({ onPress }: Props) {
         accessibilityLabel="Agregar sticker"
         style={({ pressed }) => [styles.circleButton, pressed && styles.pressed]}
         onPress={onPress}>
-        <MaterialIcons name="add" size={30} color={Palette.surface} />
+        <MaterialIcons name="add" size={36} color={Palette.primary} />
       </Pressable>
     </View>
   );
@@ -22,20 +22,27 @@ export default function CircleButton({ onPress }: Props) {
 
 const styles = StyleSheet.create({
   circleButtonContainer: {
-    width: 64,
-    height: 64,
+    width: 72,
+    height: 72,
     flexShrink: 0,
-    borderWidth: 3,
-    borderColor: Palette.accent,
     borderRadius: Radius.pill,
-    padding: 2,
+    transform: [{ translateY: -20 }],
+    backgroundColor: Palette.accent,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: Palette.primaryDark,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    elevation: 5,
   },
   circleButton: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: Radius.pill,
-    backgroundColor: Palette.primary,
   },
   pressed: {
     opacity: 0.82,
